@@ -9,3 +9,9 @@ A small Node.js and Bootstrap storefront for the product catalog. Requires Node.
 The Node server proxies `/api/products` to the BFF, avoiding browser CORS configuration. Set `PRODUCT_API_BASE_URL` to use a different API origin, or `PORT` to change the web server port. For example, `PRODUCT_API_BASE_URL=http://localhost:8081 npm start` calls the catalog service directly.
 
 The API does not currently provide a checkout URL or purchase endpoint. The Buy plan button displays a message until checkout is connected.
+
+Open http://localhost:3000/chat to submit a prompt. The web server forwards it through the BFF to the catalog service's `/ai/chat` endpoint. The current service response is a sample, not an AI-generated answer.
+
+## Development mode
+
+Run `npm run dev` to start the server with Node.js watch mode (Node.js 18.11 or later). It restarts when `server.js` changes. HTML, CSS, and browser JavaScript files are served from disk, so refresh the browser to see those changes. Stop any existing server on port 3000 before starting development mode.

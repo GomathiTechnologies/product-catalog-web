@@ -7,15 +7,39 @@ const apiBase = process.env.PRODUCT_API_BASE_URL || 'http://localhost:8080';
 const assets = {
   '/': ['index.html', 'text/html; charset=utf-8'],
   '/app.js': ['app.js', 'text/javascript; charset=utf-8'],
+  '/chat': ['chat.html', 'text/html; charset=utf-8'],
+  '/chat.js': ['chat.js', 'text/javascript; charset=utf-8'],
   '/styles.css': ['styles.css', 'text/css; charset=utf-8']
 };
 
 http.createServer(async (req, res) => {
-  if (req.method !== 'GET') {
-    res.writeHead(405, { Allow: 'GET' }).end();
+  const pathname = new URL(req.url, 'http://localhost').pathname;
+  if (pathname === '/ai/chat' && req.method === 'POST') {
+    try {
+      let body = '';
+      for await (const chunk of req) {
+        body += chunk;
+        if (Buffer.byteLength(body) > 65536) {
+          res.writeHead(413).end('Request too large');
+          return;
+        }
+      }
+      const response = await fetch(new URL('/ai/chat', apiBase), {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
+        signal: AbortSignal.timeout(30000)
+      });
+      res.writeHead(response.status, { 'Content-Type': 'application/json; charset=utf-8' }).end(await response.text());
+    } catch (error) {
+      console.error('Chat request failed:', error.message);
+      res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' }).end(JSON.stringify({ error: 'Chat service unavailable' }));
+    }
     return;
   }
-  const pathname = new URL(req.url, 'http://localhost').pathname;
+  if (req.method !== 'GET') {
+    res.writeHead(405, { Allow: pathname === '/ai/chat' ? 'POST' : 'GET' }).end();
+    return;
+  }
+  if (pathname === '/ai/chat') return res.writeHead(405, { Allow: 'POST' }).end();
   if (pathname === '/api/products') {
     try {
       const response = await fetch(new URL('/api/products', apiBase), { signal: AbortSignal.timeout(5000) });

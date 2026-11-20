@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI chat | Product Catalog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
+  <script src="/chat.js" defer></script>
+</head>
+<body>
+  <header class="border-bottom bg-white">
+    <nav class="container py-3 d-flex align-items-center gap-2" aria-label="Main navigation">
+      <span class="brand-icon"><i class="bi bi-wifi" aria-hidden="true"></i></span>
+      <span class="fw-bold fs-5">Product Catalog</span>
+      <a href="/" class="ms-auto text-decoration-none fw-semibold">View plans</a>
+    </nav>
+  </header>
+  <main class="container py-5">
+    <div class="intro mb-4">
+      <p class="eyebrow mb-2">AI CHAT</p>
+      <h1 class="display-5 fw-bold mb-3">Ask a question to purchase an internet plan</h1>
+      <p class="lead text-secondary">Enter a prompt to see a response from the catalog service.</p>
+    </div>
+    <div class="card plan-card p-4" style="max-width: 720px">
+      <form id="chat-form">
+        <label for="prompt" class="form-label fw-semibold">Your prompt</label>
+        <textarea id="prompt" class="form-control mb-3" rows="5" required placeholder="Ask about an internet plan…"></textarea>
+        <button class="btn btn-primary px-4" type="submit">Send prompt</button>
+      </form>
+      <div id="result-area" class="mt-4 d-none" aria-live="polite">
+        <h2 class="h5 fw-bold">Response</h2>
+        <pre id="result" class="speed p-3 mb-0 text-wrap" style="white-space: pre-wrap; overflow-wrap: anywhere"></pre>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

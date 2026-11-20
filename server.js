@@ -9,6 +9,8 @@ const assets = {
   '/app.js': ['app.js', 'text/javascript; charset=utf-8'],
   '/chat': ['chat.html', 'text/html; charset=utf-8'],
   '/chat.js': ['chat.js', 'text/javascript; charset=utf-8'],
+  '/internet-buyflow': ['internet-buyflow.html', 'text/html; charset=utf-8'],
+  '/internet-buyflow.js': ['internet-buyflow.js', 'text/javascript; charset=utf-8'],
   '/styles.css': ['styles.css', 'text/css; charset=utf-8']
 };
 

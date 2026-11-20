@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Internet buy flow | Product Catalog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
+  <script src="/internet-buyflow.js" defer></script>
+</head>
+<body>
+  <header class="border-bottom bg-white">
+    <nav class="container py-3 d-flex align-items-center gap-2" aria-label="Main navigation">
+      <span class="brand-icon"><i class="bi bi-wifi" aria-hidden="true"></i></span>
+      <span class="fw-bold fs-5">Product Catalog</span>
+      <a href="/" class="ms-auto text-decoration-none fw-semibold">View plans</a>
+      <a href="/chat" class="text-decoration-none fw-semibold">AI chat</a>
+    </nav>
+  </header>
+  <main class="container py-5">
+    <div class="intro mb-4">
+      <p class="eyebrow mb-2">INTERNET BUY FLOW</p>
+      <h1 class="display-5 fw-bold mb-3">Find your internet plan</h1>
+      <p class="lead text-secondary">Tell us where you live and explore available plans.</p>
+    </div>
+    <div class="row g-4 align-items-start">
+    <div class="col-12 col-lg-8">
+    <div class="card plan-card p-4 mb-5">
+      <form id="buyflow-form">
+        <label for="prompt" class="form-label fw-semibold">Your prompt</label>
+        <textarea id="prompt" class="form-control mb-3" rows="4" required placeholder="Show me internet plans in Ontario"></textarea>
+        <button class="btn btn-primary px-4" type="submit">Find plans</button>
+      </form>
+    </div>
+    <section aria-labelledby="results-heading">
+      <h2 id="results-heading" class="h4 fw-bold">Your results</h2>
+      <p id="status" role="status" aria-live="polite" class="text-secondary">Enter a prompt to see plans.</p>
+      <div id="products" class="row g-4"></div>
+    </section>
+    </div>
+    <aside class="col-12 col-lg-4" aria-labelledby="cart-heading">
+      <div class="card plan-card p-4 cart-panel">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="plan-icon cart-icon" aria-hidden="true"><i class="bi bi-bag"></i></span>
+          <div><p class="eyebrow mb-1">YOUR SELECTION</p><h2 id="cart-heading" class="h4 fw-bold mb-0">Mini cart</h2></div>
+        </div>
+        <div id="order" aria-live="polite"><p class="text-secondary mb-0">Your cart is empty. Add a plan to get started.</p></div>
+        <button id="checkout" class="btn btn-primary w-100 py-2 mt-3 fw-semibold" type="button" disabled>Checkout</button>
+        <p id="checkout-message" class="text-secondary small mt-3 mb-0" role="status"></p>
+      </div>
+    </aside>
+    </div>
+  </main>
+</body>
+</html>

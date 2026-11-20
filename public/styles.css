@@ -12,3 +12,6 @@ body { background: #f7f9fc; color: #17233d; }
 .province-option:hover, .province-option[aria-pressed="true"] { border-color: #315ad7; background: #eef3ff; color: #264cc4; }
 .province-option:focus-visible { outline: 3px solid #83a1ff; outline-offset: 2px; }
 .province-option img { width: 46px; height: 30px; object-fit: contain; }
+.cart-panel { position: sticky; top: 1.5rem; }
+.cart-icon { width: 46px; height: 46px; font-size: 1.3rem; flex-shrink: 0; }
+@media (max-width: 991.98px) { .cart-panel { position: static; } }

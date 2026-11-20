@@ -40,6 +40,18 @@ http.createServer(async (req, res) => {
     return;
   }
   if (pathname === '/ai/chat') return res.writeHead(405, { Allow: 'POST' }).end();
+  if (pathname === '/dynamic/province/products') {
+    try {
+      const upstream = new URL(pathname, apiBase);
+      upstream.search = new URL(req.url, 'http://localhost').search;
+      const response = await fetch(upstream, { signal: AbortSignal.timeout(5000) });
+      res.writeHead(response.status, { 'Content-Type': 'application/json; charset=utf-8' }).end(await response.text());
+    } catch (error) {
+      console.error('Could not load province products:', error.message);
+      res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' }).end(JSON.stringify({ error: 'Could not load products' }));
+    }
+    return;
+  }
   if (pathname === '/api/products') {
     try {
       const response = await fetch(new URL('/api/products', apiBase), { signal: AbortSignal.timeout(5000) });

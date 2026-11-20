@@ -7,3 +7,8 @@ body { background: #f7f9fc; color: #17233d; }
 .speed { background: #f4f7fc; border-radius: .75rem; }
 .price { font-size: 2.25rem; letter-spacing: -.04em; }
 .btn-primary { background: #315ad7; border-color: #315ad7; }
+.province-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: .75rem; }
+.province-option { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .55rem; min-height: 100px; padding: .75rem .5rem; border: 1px solid #e3e9f2; border-radius: .75rem; background: #fff; color: #17233d; font-size: .85rem; font-weight: 600; text-align: center; }
+.province-option:hover, .province-option[aria-pressed="true"] { border-color: #315ad7; background: #eef3ff; color: #264cc4; }
+.province-option:focus-visible { outline: 3px solid #83a1ff; outline-offset: 2px; }
+.province-option img { width: 46px; height: 30px; object-fit: contain; }

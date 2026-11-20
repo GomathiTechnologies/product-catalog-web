@@ -25,3 +25,4 @@ for repo in product-catalog-service product-catalog-bff product-catalog-web; do
   git -C "$repo" commit -m "Add chat and development setup" &&
   git -C "$repo" push -u origin "$(git -C "$repo" branch --show-current)"
 done
+The home page loads Ontario plans by default. Select a province or territory to load its plans through the BFF. Province flag images are served by Wikimedia Commons and require an internet connection; the location names remain usable if images cannot load.

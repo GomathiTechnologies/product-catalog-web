@@ -15,3 +15,13 @@ Open http://localhost:3000/chat to submit a prompt. The web server forwards it t
 ## Development mode
 
 Run `npm run dev` to start the server with Node.js watch mode (Node.js 18.11 or later). It restarts when `server.js` changes. HTML, CSS, and browser JavaScript files are served from disk, so refresh the browser to see those changes. Stop any existing server on port 3000 before starting development mode.
+
+
+## commit all code
+
+cd /Users/bharani/Documents/code && \
+for repo in product-catalog-service product-catalog-bff product-catalog-web; do
+  git -C "$repo" add -A &&
+  git -C "$repo" commit -m "Add chat and development setup" &&
+  git -C "$repo" push -u origin "$(git -C "$repo" branch --show-current)"
+done

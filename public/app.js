@@ -17,7 +17,7 @@ function renderProduct(product) {
   icon.setAttribute('aria-hidden', 'true');
   icon.append(element('i', 'bi bi-wifi'));
   const name = element('h3', 'h4 fw-bold', product.name);
-  const description = element('p', 'text-secondary', product.description);
+  const description = element('p', 'text-secondary', product.description === 'Sample home internet plan' ? 'Home internet plan' : product.description);
   const speed = element('div', 'speed p-3 my-3');
   speed.append(element('span', 'text-secondary small d-block', 'Download speed'), element('strong', '', `${product.downloadSpeedMbps} Mbps`));
   const price = element('div', 'mt-auto pt-3');

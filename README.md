@@ -123,3 +123,5 @@ sequenceDiagram
         KC-->>C: JSON response
     end
 ```
+
+![Knowledge flow diagram](docs/images/knowledge-diagram.svg)

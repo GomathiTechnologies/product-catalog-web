@@ -9,6 +9,8 @@ const assets = {
   '/app.js': ['app.js', 'text/javascript; charset=utf-8'],
   '/chat': ['chat.html', 'text/html; charset=utf-8'],
   '/chat.js': ['chat.js', 'text/javascript; charset=utf-8'],
+  '/knowledge-chat': ['knowledge-chat.html', 'text/html; charset=utf-8'],
+  '/knowledge-chat.js': ['knowledge-chat.js', 'text/javascript; charset=utf-8'],
   '/internet-buyflow': ['internet-buyflow.html', 'text/html; charset=utf-8'],
   '/internet-buyflow.js': ['internet-buyflow.js', 'text/javascript; charset=utf-8'],
   '/styles.css': ['styles.css', 'text/css; charset=utf-8']
@@ -16,7 +18,7 @@ const assets = {
 
 http.createServer(async (req, res) => {
   const pathname = new URL(req.url, 'http://localhost').pathname;
-  if (pathname === '/ai/chat' && req.method === 'POST') {
+  if ((pathname === '/ai/chat' || pathname === '/ai/knowledge/chat') && req.method === 'POST') {
     try {
       let body = '';
       for await (const chunk of req) {
@@ -26,7 +28,7 @@ http.createServer(async (req, res) => {
           return;
         }
       }
-      const response = await fetch(new URL('/ai/chat', apiBase), {
+      const response = await fetch(new URL(pathname, apiBase), {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
         signal: AbortSignal.timeout(30000)
       });
@@ -38,10 +40,10 @@ http.createServer(async (req, res) => {
     return;
   }
   if (req.method !== 'GET') {
-    res.writeHead(405, { Allow: pathname === '/ai/chat' ? 'POST' : 'GET' }).end();
+    res.writeHead(405, { Allow: pathname === '/ai/chat' || pathname === '/ai/knowledge/chat' ? 'POST' : 'GET' }).end();
     return;
   }
-  if (pathname === '/ai/chat') return res.writeHead(405, { Allow: 'POST' }).end();
+  if (pathname === '/ai/chat' || pathname === '/ai/knowledge/chat') return res.writeHead(405, { Allow: 'POST' }).end();
   if (pathname === '/dynamic/province/products') {
     try {
       const upstream = new URL(pathname, apiBase);

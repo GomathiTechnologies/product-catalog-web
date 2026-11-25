@@ -30,3 +30,16 @@ The home page loads Ontario plans by default. Select a province or territory to 
 Open http://localhost:3000/internet-buyflow to request plans using a prompt. Province product JSON is displayed as plan cards. Adding a plan calls the chat endpoint to create a sample cart response; it does not complete a purchase. Responses without a product list are displayed as messages.
 
 The Internet Buy Flow mini cart shows the latest selected plan and sample order. Selecting a different plan replaces the previous cart selection. Checkout is a placeholder; the catalog service currently returns a fixed sample cart price and does not place an order.
+
+
+Multi-tool execution in a single request
+
+[ ] Handle tool failures and invalid parameters
+
+[ ] Control tool execution and user confirmation
+
+[ ] Capture exact tool results without LLM modification
+
+[ ] Understand tool calling vs MCP
+
+plans near calypso water park and add any one of them to cart

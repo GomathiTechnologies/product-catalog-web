@@ -1,0 +1,1 @@
+Recreated reference diagrams from the AI/RAG conversation, not exact exports of the interactive chat visuals. User-uploaded screenshots are excluded. PostgreSQL and Ollama diagrams represent proposed architecture. Embedding example values are illustrative.

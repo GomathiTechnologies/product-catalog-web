@@ -5,6 +5,9 @@ body { background: #f7f9fc; color: #17233d; }
 .plan-card { border: 1px solid #e3e9f2; border-radius: 1rem; box-shadow: 0 8px 28px rgba(28, 48, 87, .05); }
 .plan-icon { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: #e8efff; color: #315ad7; font-size: 1.7rem; }
 .speed { background: #f4f7fc; border-radius: .75rem; }
+.knowledge-message { border-radius: .75rem; }
+.knowledge-message--user { background: #f4f7fc; }
+.knowledge-message--assistant { margin-left: clamp(1rem, 8%, 4rem); background: #edf5f2; }
 .price { font-size: 2.25rem; letter-spacing: -.04em; }
 .btn-primary { background: #315ad7; border-color: #315ad7; }
 .province-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: .75rem; }

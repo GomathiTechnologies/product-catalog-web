@@ -3,9 +3,9 @@ const question = document.querySelector('#question');
 const conversation = document.querySelector('#conversation');
 const button = form.querySelector('button');
 
-function addMessage(label, text) {
+function addMessage(label, text, role) {
   const message = document.createElement('div');
-  message.className = 'speed p-3 mb-3';
+  message.className = `knowledge-message knowledge-message--${role} p-3 mb-3`;
   const heading = document.createElement('h2');
   heading.className = 'h6 fw-bold';
   heading.textContent = label;
@@ -29,8 +29,8 @@ form.addEventListener('submit', async event => {
   button.disabled = true;
   question.value = '';
   conversation.classList.remove('d-none');
-  addMessage('You', prompt);
-  const answer = addMessage('Knowledge assistant', 'Searching the knowledge base…');
+  addMessage('You', prompt, 'user');
+  const answer = addMessage('Knowledge assistant', 'Searching the knowledge base…', 'assistant');
   answer.message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   try {
     const response = await fetch('/ai/knowledge/chat', {

@@ -46,13 +46,13 @@ plans near calypso water park and add any one of them to cart
 
 ## Knowledge chat
 
-With the service, BFF, and web server running, ingest the PDFs from the service directory after each service restart:
+With PostgreSQL running, the service automatically ingests the PDFs on startup when the knowledge table is empty. To manually refresh the stored vectors later, run:
 
 ```sh
 curl -X POST http://localhost:8081/ai/knowledge/ingest
 ```
 
-Open http://localhost:3000/knowledge-chat to ask a question. The page sends requests through the BFF to the service, which retrieves relevant PDF chunks and uses them as context for its answer. The listed sources are retrieved documents and may not all be used in the answer. The in-memory knowledge base must be ingested again after a service restart. Ingestion and chat require the service's `OPENAI_API_KEY` and use the configured models.
+Open http://localhost:3000/knowledge-chat to ask a question. The page sends requests through the BFF to the service, which retrieves relevant PDF chunks and uses them as context for its answer. The listed sources are retrieved documents and may not all be used in the answer. The knowledge base is stored in PostgreSQL and persists across service restarts. See the service README for database and pgvector setup. Ingestion and chat require the service's `OPENAI_API_KEY` and use the configured models.
 
 The BFF endpoint can also be called directly:
 
@@ -82,7 +82,7 @@ sequenceDiagram
     participant ES as EmbeddingService
     participant PR as PdfReader
     participant EM as EmbeddingModel
-    participant VS as InMemoryVectorStore
+    participant VS as PostgresKnowledgeVectorStore
 
     rect rgba(59,130,246,0.08)
         Note over C,VS: Knowledge Ingestion
@@ -105,12 +105,12 @@ sequenceDiagram
         Note over C,VS: Semantic Search
         C->>KC: POST /ai/knowledge/search
         KC->>ES: search(query, topK, threshold)
-        ES->>VS: getAll()
-        VS-->>ES: Document snapshot
+        ES->>VS: count()
+        VS-->>ES: Document count
         alt Store contains documents
             ES->>EM: embed(query)
             EM-->>ES: Query vector
-            ES->>VS: search(snapshot, vector, topK, threshold)
+            ES->>VS: search(vector, topK, threshold)
             loop Each stored document
                 VS->>VS: Calculate cosine similarity
             end

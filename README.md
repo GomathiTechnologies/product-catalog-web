@@ -12,6 +12,10 @@ The API does not currently provide a checkout URL or purchase endpoint. The Buy 
 
 Open http://localhost:3000/chat to submit a prompt. The web server forwards it through the BFF to the catalog service's `/ai/chat` endpoint. The current service response is a sample, not an AI-generated answer.
 
+## Best Buy chat
+
+Start the product catalog service and `bestbuy-service` (see their READMEs), then run `npm start` here and open http://localhost:3000/bestbuy. The page sends prompts to the Best Buy service through the web server, which avoids browser CORS configuration. Set `BESTBUY_API_BASE_URL` to change the default `http://localhost:8082` service address. Responses appear in the chat; each request is independent, and sample orders do not place a purchase.
+
 ## Development mode
 
 Run `npm run dev` to start the server with Node.js watch mode (Node.js 18.11 or later). It restarts when `server.js` changes. HTML, CSS, and browser JavaScript files are served from disk, so refresh the browser to see those changes. Stop any existing server on port 3000 before starting development mode.
@@ -20,7 +24,7 @@ Run `npm run dev` to start the server with Node.js watch mode (Node.js 18.11 or 
 ## commit all code
 
 cd /Users/bharani/Documents/code && \
-for repo in product-catalog-service product-catalog-bff product-catalog-web; do
+for repo in product-catalog-service product-catalog-bff product-catalog-web bestbuy-service; do
   git -C "$repo" add -A &&
   git -C "$repo" commit -m "Add chat and development setup" &&
   git -C "$repo" push -u origin "$(git -C "$repo" branch --show-current)"

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Best Buy | Plan assistant</title>
+  <link rel="stylesheet" href="/bestbuy/styles.css">
+  <script src="/bestbuy/chat.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="/bestbuy" aria-label="Best Buy plan assistant">BEST<br>BUY<span>.</span></a>
+      <span class="header-label">PLAN ASSISTANT</span>
+      <a class="back-link" href="/">← Product catalog</a>
+    </div>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow"><span></span> HERE TO HELP</p>
+      <h1>Let's find your<br><em>perfect connection.</em></h1>
+      <p>Tell us where you are and what you need. We'll help you explore internet plans available in your province.</p>
+    </section>
+    <section class="chat" aria-label="Plan assistant chat">
+      <div class="chat-header">
+        <div class="avatar" aria-hidden="true">✦</div>
+        <div><h2>Plan assistant</h2><p>Ask us about internet plans</p></div>
+        <span class="status"><span></span> READY TO HELP</span>
+      </div>
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-label="Conversation">
+        <div class="message assistant"><span class="message-label">ASSISTANT</span><p>Hi there! Looking for an internet plan? Tell me your province or territory to get started.</p></div>
+      </div>
+      <form id="chat-form" class="composer">
+        <label class="sr-only" for="prompt">Your message</label>
+        <textarea id="prompt" rows="1" placeholder="Ask about plans in your area..." required></textarea>
+        <button type="submit">Send <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="disclaimer">Sample plans and orders only. No purchase will be made.</p>
+    </section>
+    <p class="footnote">POWERED BY THE PRODUCT CATALOG</p>
+  </main>
+</body>
+</html>
